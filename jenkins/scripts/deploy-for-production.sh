@@ -10,8 +10,10 @@ set +x
 
 echo 'The following "npm" command downloads and installs the npm serve module'
 echo '(for serving static sites in production environments) to the local'
-echo '"node_modules" directory, which means that this module should not need to'
-echo 'be downloaded after this Pipeline''s initial run.'
+echo '"node_modules" directory (i.e. within the appropriate subdirectory of'
+echo '"/var/jenkins_home/workspace/"), which means that this module should not'
+echo 'need to be downloaded after this Pipeline''s initial run for a given'
+echo 'branch.'
 set -x
 npm install serve
 set +x
