@@ -13,7 +13,7 @@ echo '(for serving static sites in production environments) to the local'
 echo '"node_modules" directory, which means that this module should not need to'
 echo 'be downloaded after this Pipeline''s initial run.'
 set -x
-npm install -g serve
+npm install serve
 set +x
 
 echo 'The following "serve" command runs the npm serve module (downloaded'
