@@ -5,4 +5,4 @@ echo '(written to ".pidfile"), all of which were conducted when either'
 echo '"deliver-for-development.sh" or "deliver-for-development.sh" was executed.'
 set -x
 #kill $(cat .pidfile)
-ssh -i /root/.ssh/jenkins_rsa root@35.194.253.9 'mkdir /home/GitHub'
+ssh -i /home/.ssh/jenkins_rsa root@35.194.253.9 'mkdir /home/GitHub'
