@@ -24,9 +24,12 @@ pipeline {
           }
         }
         stage('Deliver for stagging') {
+          when {
+            branch 'stagging'
+          }
           steps {
             echo 'Stagging'
-            input 'Waiting'
+            input(ok: 'Stagging', message: 'Waiting')
           }
         }
       }
