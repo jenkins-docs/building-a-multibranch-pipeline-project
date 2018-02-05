@@ -25,7 +25,12 @@ pipeline {
 				}
 		}
 		stage('Deploy for stagging') {
-				
+				when {
+					branch 'stagging'
+				}
+				steps {
+					sh './jenkins/scripts/deliver-for-stagging.sh'
+				}
         }
         stage('Deploy for production') {
 				when {
