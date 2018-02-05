@@ -14,9 +14,8 @@ node {
                 sh "echo 'shell scripts to run Stagging tests...'"
             },
             'Development': {
-                sh "echo 'shell scripts to run Development tests...'"
                 stage ('Deploy') {
-                sh "echo 'shell scripts to deploy to server...'"
+                    sh "echo 'shell scripts to deploy to server...'"
                 }
             }
         }
