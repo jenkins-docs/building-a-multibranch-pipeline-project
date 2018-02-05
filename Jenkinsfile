@@ -29,7 +29,7 @@ pipeline {
           }
           steps {
             echo 'Stagging'
-            input(ok: 'Stagging', message: 'Waiting')
+            input 'Waiting'
           }
         }
       }
