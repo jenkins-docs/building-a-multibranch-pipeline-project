@@ -9,14 +9,20 @@ node {
         stage ('Build') {
             sh "echo 'shell scripts to build project...'"
         }
-        stage ('Deliver') {
-            parallel 'Stagging': {
-                sh "echo 'shell scripts to run Stagging tests...'"
+        stage ('Tests') {
+            parallel 'static': {
+                sh "echo 'shell scripts to run static tests...'"
             },
-            'Development': {
-                stage ('Deploy') {
-                    sh "echo 'shell scripts to deploy to server...'"
-                }
+            'unit': {
+                sh "echo 'shell scripts to run unit tests...'"
+            },
+            'integration': {
+                sh "echo 'shell scripts to run integration tests...'"
+            }
+        }
+        stage ('Deploy') {
+            parallel 'Production': {
+                sh "echo 'shell scripts to run Production'"
             }
         }
     } catch (err) {
