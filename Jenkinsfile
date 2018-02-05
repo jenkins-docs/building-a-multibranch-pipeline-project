@@ -9,15 +9,12 @@ node {
         stage ('Build') {
             sh "echo 'shell scripts to build project...'"
         }
-        stage ('Tests') {
-            parallel 'static': {
-                sh "echo 'shell scripts to run static tests...'"
+        stage ('Deliver') {
+            parallel 'Stagging': {
+                sh "echo 'shell scripts to run Stagging tests...'"
             },
-            'unit': {
-                sh "echo 'shell scripts to run unit tests...'"
-            },
-            'integration': {
-                sh "echo 'shell scripts to run integration tests...'"
+            'Development': {
+                sh "echo 'shell scripts to run Development tests...'"
             }
         }
         stage ('Deploy') {
