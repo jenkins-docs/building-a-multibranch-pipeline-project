@@ -15,10 +15,10 @@ node {
             },
             'Development': {
                 sh "echo 'shell scripts to run Development tests...'"
+                stage ('Deploy') {
+                sh "echo 'shell scripts to deploy to server...'"
+                }
             }
-        }
-        stage ('Deploy') {
-            sh "echo 'shell scripts to deploy to server...'"
         }
     } catch (err) {
         currentBuild.result = 'FAILED'
