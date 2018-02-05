@@ -29,8 +29,8 @@ pipeline {
                 branch 'stagging'  
             }
             steps {
-                sh './jenkins/scripts/deploy-for-stagging.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/deliver-for-stagging.sh'
+                input message: 'Approve to product? (Click "Proceed" to continue)'
                 sh './jenkins/scripts/kill.sh'
             }
         }
