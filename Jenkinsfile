@@ -1,46 +1,38 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      steps {
-        sh 'npm install'
-      }
+    agent any
+    environment {
+        CI = 'true'
     }
-    stage('Test') {
-      steps {
-        sh './jenkins/scripts/test.sh'
-      }
-    }
-    stage('Deliver for development') {
-      parallel {
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './jenkins/scripts/test.sh'
+            }
+        }
         stage('Deliver for development') {
-          when {
-            branch 'development'
-          }
-          steps {
-            sh './jenkins/scripts/deliver-for-development.sh'
-            input 'Finished using the web site? (Click "Proceed" to continue)'
-            sh './jenkins/scripts/kill.sh'
-          }
+            when {
+                branch 'development' 
+            }
+            steps {
+                sh './jenkins/scripts/deliver-for-development.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
         }
-        stage('Deliver for stagging') {
-          when {
-            branch 'stagging'
-          }
-          steps {
-            echo 'Stagging'
-            input 'Waiting'
-          }
+        stage('Deploy for stagging') {
+            when {
+                branch 'stagging'  
+            }
+            steps {
+                sh './jenkins/scripts/deploy-for-stagging.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
         }
-      }
     }
-    stage('Prod') {
-      steps {
-        echo 'Prod'
-      }
-    }
-  }
-  environment {
-    CI = 'true'
-  }
 }
