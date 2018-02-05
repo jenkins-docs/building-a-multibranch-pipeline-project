@@ -24,6 +24,18 @@ pipeline {
                 sh './jenkins/scripts/kill.sh'
             }
         }
+		stage('Deliver for stagging') {
+            when {
+                branch 'stagging' 
+            }
+            steps {
+                sh './jenkins/scripts/deliver-for-stagging.sh'
+                input message: 'Deploy to production (Click "Approved" to deploy)'
+                sh './jenkins/scripts/deploy-for-production.sh'
+				input message: 'Stop Stagging (Click "Kill Stagging")'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
         stage('Deploy for production') {
             when {
                 branch 'production'  
