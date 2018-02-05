@@ -14,14 +14,14 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-		stage('Deliver') {
-			parallel 'development': {
-                sh "echo 'shell scripts to run static tests...'"
-            },
-            'stagging': {
-                sh "echo 'shell scripts to run unit tests...'"
-            }
-		}
+	stage('Deliver') {
+		parallel 'development': {
+                	sh "echo 'shell scripts to run static tests...'"
+            	},
+            	'stagging': {
+                	sh "echo 'shell scripts to run unit tests...'"
+            	}
+	}
         stage('Deploy for production') {
 				when {
 					branch 'production'
