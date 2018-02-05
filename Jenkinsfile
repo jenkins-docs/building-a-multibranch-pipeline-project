@@ -26,7 +26,7 @@ pipeline {
         stage('Deliver for stagging') {
           steps {
             echo 'Stagging'
-            input(ok: 'Stagging', message: 'Waiting')
+            input 'Waiting'
           }
         }
       }
