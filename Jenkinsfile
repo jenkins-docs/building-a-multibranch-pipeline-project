@@ -1,32 +1,35 @@
-node {
-    // Clean workspace before doing anything
-    deleteDir()
+pipeline {
+	agent any
+	node {
+		// Clean workspace before doing anything
+		deleteDir()
 
-    try {
-        stage ('Clone') {
-            checkout scm
-        }
-        stage ('Build') {
-            sh "echo 'shell scripts to build project...'"
-        }
-        stage ('Tests') {
-            parallel 'static': {
-                sh "echo 'shell scripts to run static tests...'"
-            },
-            'unit': {
-                sh "echo 'shell scripts to run unit tests...'"
-            },
-            'integration': {
-                sh "echo 'shell scripts to run integration tests...'"
-            }
-        }
-        stage ('Deploy') {
-            parallel 'Production': {
-                sh "echo 'shell scripts to run Production'"
-            }
-        }
-    } catch (err) {
-        currentBuild.result = 'FAILED'
-        throw err
-    }
+		try {
+			stage ('Clone') {
+				checkout scm
+			}
+			stage ('Build') {
+				sh "echo 'shell scripts to build project...'"
+			}
+			stage ('Tests') {
+				parallel 'static': {
+					sh "echo 'shell scripts to run static tests...'"
+				},
+				'unit': {
+					sh "echo 'shell scripts to run unit tests...'"
+				},
+				'integration': {
+					sh "echo 'shell scripts to run integration tests...'"
+				}
+			}
+			stage ('Deploy') {
+				parallel 'Production': {
+					sh "echo 'shell scripts to run Production'"
+				}
+			}
+		} catch (err) {
+			currentBuild.result = 'FAILED'
+			throw err
+		}
+	}
 }
