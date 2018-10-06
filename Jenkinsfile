@@ -5,16 +5,16 @@ pipeline {
         CI = 'true'
     }
     stages {
-        stage('Build') {
-            steps {
-                echo "build"
-            }
-        }
-        stage('Test') {
-            steps {
-                echo "tests"
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         echo "build"
+        //     }
+        // }
+        // stage('Test') {
+        //     steps {
+        //         echo "tests"
+        //     }
+        // }
         stage('PR') {
             when {
                 changeRequest()
