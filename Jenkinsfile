@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        any
-    }
+    agent any
     environment {
         // nnnn
         CI = 'true'
@@ -30,7 +28,7 @@ pipeline {
                 branch 'production'
             }
             steps {
-                echo "tests production.."
+                echo "tests production"
             }
         }
     }
