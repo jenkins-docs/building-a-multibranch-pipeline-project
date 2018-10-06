@@ -15,6 +15,14 @@ pipeline {
                 echo "tests"
             }
         }
+        stage('PR') {
+            when {
+                changeRequest()
+            }
+            steps {
+                echo "tests development PRRRRR"
+            }
+        }
         stage('Deliver for development') {
             when {
                 branch 'development'
