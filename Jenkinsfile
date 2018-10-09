@@ -18,7 +18,7 @@ pipeline {
         stage('PR') {
             when {
                 anyOf {
-                    changeRequest();
+                    changeRequest()
                     branch '**/release-*';
                     branch 'development'
                 }
