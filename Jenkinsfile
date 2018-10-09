@@ -23,6 +23,30 @@ pipeline {
                 echo "tests development PRRRRR"
             }
         }
+        stage('PR') {
+            when {
+                branch '**/release-*'
+            }
+            steps {
+                echo "tests release......................................"
+                echo ${GIT_BRANCH}
+                def scmVars = checkout scm
+                def branchName = scmVars.GIT_BRANCH
+                sh("printenv")
+            }
+        }
+        stage('Deliver for development') {
+            when {
+                tag '**/v.1.*'
+            }
+            steps {
+                echo "tests TAG"
+                echo ${GIT_BRANCH}
+                def scmVars = checkout scm
+                def branchName = scmVars.GIT_BRANCH
+                sh("printenv")
+            }
+        }
         stage('Deliver for development') {
             when {
                 branch 'development'
