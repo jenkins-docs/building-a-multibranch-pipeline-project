@@ -17,7 +17,11 @@ pipeline {
         }
         stage('PR') {
             when {
-                changeRequest()
+                anyOf {
+                    changeRequest();
+                    branch '**/release-*';
+                    branch 'development'
+                }
             }
             steps {
                 echo "tests development PRRRRR"
