@@ -43,7 +43,8 @@ pipeline {
             }
             steps {
                 script {
-                    echo "tests TAG"
+                    checkout scm
+                    echo "tests TAG.............................................."
                     echo ${GIT_BRANCH}
                     def scmVars = checkout scm
                     def branchName = scmVars.GIT_BRANCH
