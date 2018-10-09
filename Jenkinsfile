@@ -28,11 +28,13 @@ pipeline {
                 branch '**/release-*'
             }
             steps {
-                echo "tests release......................................"
-                echo ${GIT_BRANCH}
-                def scmVars = checkout scm
-                def branchName = scmVars.GIT_BRANCH
-                sh("printenv")
+                script {
+                    echo "tests release......................................"
+                    echo ${GIT_BRANCH}
+                    def scmVars = checkout scm
+                    def branchName = scmVars.GIT_BRANCH
+                    sh("printenv")
+                }
             }
         }
         stage('Deliver for TAG') {
@@ -40,11 +42,13 @@ pipeline {
                 tag '**/v.1.*'
             }
             steps {
-                echo "tests TAG"
-                echo ${GIT_BRANCH}
-                def scmVars = checkout scm
-                def branchName = scmVars.GIT_BRANCH
-                sh("printenv")
+                script {
+                    echo "tests TAG"
+                    echo ${GIT_BRANCH}
+                    def scmVars = checkout scm
+                    def branchName = scmVars.GIT_BRANCH
+                    sh("printenv")
+                }
             }
         }
         stage('Deliver for development') {
