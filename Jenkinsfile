@@ -20,7 +20,8 @@ pipeline {
                 anyOf {
                     changeRequest()
                     branch '**/release-*';
-                    branch 'development'
+                    branch 'development';
+                    branch '**/DO-*'
                 }
             }
             steps {
