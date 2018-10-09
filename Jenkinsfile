@@ -25,7 +25,10 @@ pipeline {
         }
         stage('release') {
             when {
-                branch '**/release-*'
+                anyOf {
+                    branch '**/release-*';
+                    branch 'development'
+                }
             }
             steps {
                 script {
@@ -48,14 +51,6 @@ pipeline {
                     def branchName = scmVars.GIT_BRANCH
                     sh("printenv")
                 }
-            }
-        }
-        stage('Deliver for development') {
-            when {
-                branch 'development'
-            }
-            steps {
-                echo "tests development"
             }
         }
         stage('Deploy for production') {
