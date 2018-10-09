@@ -23,7 +23,7 @@ pipeline {
                 echo "tests development PRRRRR"
             }
         }
-        stage('PR') {
+        stage('release') {
             when {
                 branch '**/release-*'
             }
@@ -35,7 +35,7 @@ pipeline {
                 sh("printenv")
             }
         }
-        stage('Deliver for development') {
+        stage('Deliver for TAG') {
             when {
                 tag '**/v.1.*'
             }
