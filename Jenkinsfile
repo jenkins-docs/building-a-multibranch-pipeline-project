@@ -8,10 +8,11 @@ def loadProperties(envfile) {
     	 }
 	  
 	  echo "file is here1:"
-	  echo "file is here ${envDir}"
+	 
 	  echo "file is here2:"
 	  
-	  def exists = fileExists '${envDir}/jenkins.properties'
+	  def exists = fileExists '/var/jenkins_home/workspace/nch-pipeline-project_development@2/envDir/jenkins.properties'
+	  
 	  if (exists){
     		echo "jenkins.properties exists"
 	  } else {
