@@ -1,9 +1,12 @@
 properties = null
+properties1 = null
 
 def loadProperties(envfile) {
   node {
-         properties = readProperties file: envfile
-         echo "Immediate one ${properties.ACR_LOGINSERVER}"
+         checkout scm
+	 properties = readProperties file: envfile
+	 properties1 = readProperties file: 'jenkins.properties'
+         echo "Immediate one ${properties1.ACR_LOGINSERVER}"
   }
 }
 
