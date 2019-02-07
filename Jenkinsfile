@@ -1,8 +1,12 @@
 def loadProperties(envfile) {
   node {
-         checkout scm
+         dir('envDir') {
+             git url: 'https://github.com/richardjchen/building-a-multibranch-pipeline-project.git'
+    	 }
 	  
-	  def exists = fileExists 'jenkins.properties'
+	  echo "${envDir}"
+	  
+	  def exists = fileExists 'envDir/jenkins.properties'
 	  if (exists){
     		echo "jenkins.properties exists"
 	  } else {
