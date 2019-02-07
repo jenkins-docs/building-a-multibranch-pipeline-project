@@ -1,3 +1,5 @@
+def properties = readProperties file: './config-manager/dev/jenkins.properties'
+
 pipeline {
     agent any
     environment {
@@ -29,7 +31,7 @@ pipeline {
               }
               steps {
                  script {
-		     properties = readProperties file: development
+		     echo "build112 branch successful!"
 		     echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
        		  }
               }
@@ -40,7 +42,7 @@ pipeline {
               }
               steps {
 	          script {
-	               properties = readProperties file: production
+	               echo "build112 branch successful!"
 	      	       echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
 	         }
               }
