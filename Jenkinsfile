@@ -2,7 +2,6 @@ properties = null
 
 def loadProperties(envfile) {
   node {
-         checkout scm
          properties = readProperties file: envfile
          echo "Immediate one ${properties.ACR_LOGINSERVER}"
   }
