@@ -1,10 +1,10 @@
 properties = null
 
-def loadProperties() {
+def loadProperties(envfile) {
   node {
          checkout scm
-         properties = readProperties file: 'pipeline.properties'
-         echo "Immediate one ${properties.repo}"
+         properties = readProperties file: envfile
+         echo "Immediate one ${properties.ACR_LOGINSERVER}"
   }
 }
 
@@ -39,8 +39,8 @@ pipeline {
               }
               steps {
                  script {
-		     echo "build113 branch successful!"
-		     loadProperties()
+		     echo "build114 branch successful!"
+		     loadProperties(development)
 		     echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
        		  }
               }
@@ -51,8 +51,8 @@ pipeline {
               }
               steps {
 	          script {
-	               echo "build113 branch successful!"
-		       loadProperties()
+	               echo "build114 branch successful!"
+		       loadProperties(production)
 	      	       echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
 	         }
               }
