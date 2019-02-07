@@ -1,4 +1,12 @@
-def properties = readProperties file: './config-manager/dev/jenkins.properties'
+properties = null
+
+def loadProperties() {
+  node {
+         checkout scm
+         properties = readProperties file: 'pipeline.properties'
+         echo "Immediate one ${properties.repo}"
+  }
+}
 
 pipeline {
     agent any
@@ -31,7 +39,8 @@ pipeline {
               }
               steps {
                  script {
-		     echo "build112 branch successful!"
+		     echo "build113 branch successful!"
+		     loadProperties()
 		     echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
        		  }
               }
@@ -42,7 +51,8 @@ pipeline {
               }
               steps {
 	          script {
-	               echo "build112 branch successful!"
+	               echo "build113 branch successful!"
+		       loadProperties()
 	      	       echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
 	         }
               }
