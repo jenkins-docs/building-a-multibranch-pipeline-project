@@ -1,9 +1,14 @@
-properties = null
-properties1 = null
-
 def loadProperties(envfile) {
   node {
          checkout scm
+	  
+	  def exists = fileExists 'jenkins.properties'
+	  if (exists){
+    		echo "jenkins.properties exists"
+	  } else {
+	       echo "jenkins.properties does not exist"
+	  }
+	  
 	 properties = readProperties file: envfile
 	 properties1 = readProperties file: 'jenkins.properties'
          echo "Immediate one ${properties1.ACR_LOGINSERVER}"
