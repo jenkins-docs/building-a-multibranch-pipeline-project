@@ -15,7 +15,7 @@ pipeline {
           }	
           stage('Build') {
               steps {
-                  echo "build successful"
+                  echo "build branch successful"
               }
           }
           stage('Test') {
