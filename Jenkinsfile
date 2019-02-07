@@ -1,12 +1,17 @@
+properties = null
+properties1 = null
+
 def loadProperties(envfile) {
   node {
          dir('envDir') {
              git url: 'https://github.com/richardjchen/building-a-multibranch-pipeline-project.git'
     	 }
 	  
-	  echo "${envDir}"
+	  echo "file is here1:"
+	  echo "file is here ${envDir}"
+	  echo "file is here2:"
 	  
-	  def exists = fileExists 'envDir/jenkins.properties'
+	  def exists = fileExists '${envDir}/jenkins.properties'
 	  if (exists){
     		echo "jenkins.properties exists"
 	  } else {
