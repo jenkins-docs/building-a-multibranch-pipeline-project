@@ -73,7 +73,7 @@ pipeline {
 		     echo "test successful"
 		     println getProperties(development, "ACR_LOGINSERVER")
 		     echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
-		  }
+		  
        		  }
               }
           }
