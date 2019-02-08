@@ -26,20 +26,34 @@ def loadProperties(envfile) {
 }
 
 def getProperties(envfile, name) {
-  node { 
+  
+	 def keyValue = " "
 	 def exists = fileExists envfile
 	 
 	 if (exists){
     	       echo "jenkins.properties exists"
     	       properties = readProperties file: envfile
-    	       return properties.getProperty(name)
+
+	       if (properties.size() > 0){
+    		    echo "jenkins.properties exists"
+		    keyValue = properties.getProperty(name)
+	        } else {
+	             echo "jenkins.properties does not exist"
+	       }     	    
     	       
 	 } else {
 	       echo "jenkins.properties does not exist"
 	       properties = readProperties file: envfile
-    	       return properties.getProperty(name)
+    	       
+	       if (properties.size() > 0){
+    		    echo "jenkins.properties exists"
+		    keyValue = properties.getProperty(name)
+	        } else {
+	             echo "jenkins.properties does not exist"
+	       } 
 	 }
-    }
+	
+         return keyValue
 }
 
 pipeline {
@@ -77,6 +91,34 @@ pipeline {
        		  }
               }
           }
+	   stage('workers_dir') {
+              steps {
+                  
+		  script {
+		    	 def  FILES_LIST = sh (script: "ls   '${workers_dir}'", returnStdout: true).trim()
+	                 //DEBUG
+                         echo "FILES_LIST : ${FILES_LIST}"
+                         //PARSING
+                         for(String ele : FILES_LIST.split("\\r?\\n")){ 
+                             println ">>>${ele}<<<"     
+                         }	  
+       		  }
+              }
+          } 
+	  stage('check workspace files') {
+              steps {
+                  
+		  script {
+		    	 def  FILES_LIST = sh (script: "ls   '${workspace}'", returnStdout: true).trim()
+	                 //DEBUG
+                         echo "FILES_LIST : ${FILES_LIST}"
+                         //PARSING
+                         for(String ele : FILES_LIST.split("\\r?\\n")){ 
+                             println ">>>${ele}<<<"     
+                         }	  
+       		  }
+              }
+          }     
           stage('Deliver for development') {
               when {
                   branch 'development' 
