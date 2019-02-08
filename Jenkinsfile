@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "npm install --no-optional"
+                sh "npm install"
             }
         }
         stage('Test') {
