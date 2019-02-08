@@ -93,8 +93,8 @@ pipeline {
                   
 		  script {
 		     echo "test successful"
-		     del propValue =  getProperties(development, "ACR_LOGINSERVER")
-		     echo "Running build on git repo ${propValue}"
+		     def propValue =  getProperties(development, "ACR_LOGINSERVER")
+		     echo "Running test on git repo ${propValue}"
 		  
        		  }
               }
