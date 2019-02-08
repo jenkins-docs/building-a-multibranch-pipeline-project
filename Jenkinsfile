@@ -14,7 +14,6 @@ pipeline {
             steps {
                 sh "npm install --no-optional"
                 sh "npm cache clean"
-                sh "npm start -- --reset-cache"
                 sh "npm run build"     
             }
         }
