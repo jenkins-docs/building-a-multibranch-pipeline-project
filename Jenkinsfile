@@ -25,6 +25,23 @@ def loadProperties(envfile) {
   }
 }
 
+def getProperties(envfile, name) {
+  node { 
+	 def exists = fileExists envfile
+	 
+	 if (exists){
+    	       echo "jenkins.properties exists"
+    	       properties = readProperties file: envfile
+    	       return properties.getProperty(name)
+    	       
+	 } else {
+	       echo "jenkins.properties does not exist"
+	       properties = readProperties file: envfile
+    	       return properties.getProperty(name)
+	 }
+    }
+}
+
 pipeline {
     agent any
     environment {
@@ -42,12 +59,22 @@ pipeline {
           }	
           stage('Build') {
               steps {
-                  echo "build branch successful"
+		  script {
+		      echo "build branch successful"
+		     println getProperties(development, "ACR_LOGINSERVER")
+		     echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
+		  }
               }
           }
           stage('Test') {
               steps {
-                  echo "test successful"
+                  
+		  script {
+		     echo "test successful"
+		     println getProperties(development, "ACR_LOGINSERVER")
+		     echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
+		  }
+       		  }
               }
           }
           stage('Deliver for development') {
@@ -57,7 +84,7 @@ pipeline {
               steps {
                  script {
 		     echo "build114 branch successful!"
-		     loadProperties(development)
+		     println getProperties(development, "ACR_LOGINSERVER")
 		     echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
        		  }
               }
@@ -69,7 +96,7 @@ pipeline {
               steps {
 	          script {
 	               echo "build114 branch successful!"
-		       loadProperties(production)
+		       println getProperties(production, "ACR_LOGINSERVER")
 	      	       echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
 	         }
               }
