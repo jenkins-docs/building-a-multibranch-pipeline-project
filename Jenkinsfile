@@ -1,29 +1,4 @@
 properties = null
-properties1 = null
-
-def loadProperties(envfile) {
-  node {
-         dir('envDir') {
-             git url: 'https://github.com/richardjchen/building-a-multibranch-pipeline-project.git'
-    	 }
-	  
-	  echo "file is here1:"
-	 
-	  echo "file is here2:"
-	  
-	  def exists = fileExists '/var/jenkins_home/workspace/nch-pipeline-project_development@2/envDir/jenkins.properties'
-	  
-	  if (exists){
-    		echo "jenkins.properties exists"
-	  } else {
-	       echo "jenkins.properties does not exist"
-	  }
-	  
-	 properties = readProperties file: envfile
-	 properties1 = readProperties file: 'jenkins.properties'
-         echo "Immediate one ${properties1.ACR_LOGINSERVER}"
-  }
-}
 
 def getProperties(envfile, name) {
   
@@ -39,11 +14,15 @@ def getProperties(envfile, name) {
 		    keys= properties.keySet()
 		    keyValue = properties[name]
 		    
+		    echo "set them up as sytem environment variables for application to grab the value"
+		       
 		    keys= properties.keySet()
                     for(key in keys) {
                         value = properties["${key}"]
-                        println "property values ${value}"
+			env."${key}" = "${value}"
+                        println "populate them as sytem environment variables: ${value}"
                     }
+		       
 	        } else {
 	             echo "jenkins.properties does not exist"
 	       }     	    
