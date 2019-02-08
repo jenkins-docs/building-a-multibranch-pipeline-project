@@ -99,20 +99,6 @@ pipeline {
        		  }
               }
           }
-	   stage('workers_dir') {
-              steps {
-                  
-		  script {
-		    	 def  FILES_LIST = sh (script: "ls   '${workers_dir}'", returnStdout: true).trim()
-	                 //DEBUG
-                         echo "FILES_LIST : ${FILES_LIST}"
-                         //PARSING
-                         for(String ele : FILES_LIST.split("\\r?\\n")){ 
-                             println ">>>${ele}<<<"     
-                         }	  
-       		  }
-              }
-          } 
 	  stage('check workspace files') {
               steps {
                   
