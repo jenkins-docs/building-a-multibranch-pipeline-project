@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "rm -rf node_modules && npm install"
+                sh "rm -rf node_modules && npm install --no-optional"
                 sh "rm -fr react-*"
                 sh "npm cache clean"
                 sh "npm start -- --reset-cache"
