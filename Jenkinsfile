@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh "rm -rf node_modules && npm install"
-                sh "rm -fr $TMPDIR/react-*"
+                sh "rm -fr react-*"
                 sh "npm cache clean"
                 sh "npm start -- --reset-cache"
             }
