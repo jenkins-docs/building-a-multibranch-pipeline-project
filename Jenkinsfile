@@ -31,14 +31,14 @@ def getProperties(envfile, name) {
 	 def exists = fileExists envfile
 	 
 	 if (exists){
-    	       echo "jenkins.properties exists"
+    	       echo "jenkins.properties file exists"
     	       properties = readProperties file: envfile
 
 	       if (properties.size() > 0){
-    		    echo "jenkins.properties exists"
-		    keys= props.keySet()
+    		    echo "jenkins.properties value exists"
+		    keys= properties.keySet()
                     for(key in keys) {
-                        value = props["${key}"]
+                        value = properties["${key}"]
                         println "property values ${value}"
                     }
 	        } else {
@@ -50,10 +50,10 @@ def getProperties(envfile, name) {
 	       properties = readProperties file: envfile
     	       
 	       if (properties.size() > 0){
-    		    echo "jenkins.properties exists"
-		    keys= props.keySet()
+    		    echo "jenkins.properties value exists"
+		    keys= properties.keySet()
                     for(key in keys) {
-                        value = props["${key}"]
+                        value = properties["${key}"]
                         println "property values ${value}"
                     }
 	        } else {
@@ -82,9 +82,9 @@ pipeline {
           stage('Build') {
               steps {
 		  script {
-		      echo "build branch successful"
-		     println getProperties(development, "ACR_LOGINSERVER")
-		     echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
+		     echo "build branch successful"
+		     del propValue = getProperties(development, "ACR_LOGINSERVER")
+		     echo "Running build on git repo ${propValue}"
 		  }
               }
           }
@@ -93,8 +93,8 @@ pipeline {
                   
 		  script {
 		     echo "test successful"
-		     println getProperties(development, "ACR_LOGINSERVER")
-		     echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
+		     del propValue =  getProperties(development, "ACR_LOGINSERVER")
+		     echo "Running build on git repo ${propValue}"
 		  
        		  }
               }
