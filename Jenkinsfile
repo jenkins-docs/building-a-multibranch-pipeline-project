@@ -15,6 +15,7 @@ pipeline {
                 sh "npm install"
                 sh "npm cache clean"
                 sh "npm run build"
+                sh "chown -R $(whoami) ~/.npm"
                 sh "npm install -g serve"
                 sh "serve -s build" 
             }
