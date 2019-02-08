@@ -13,6 +13,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh "npm install"
+                sh "npm cache clean"
+                sh "npm run build"
             }
         }
         stage('Test') {
