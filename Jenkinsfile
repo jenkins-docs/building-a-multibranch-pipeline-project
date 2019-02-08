@@ -36,7 +36,11 @@ def getProperties(envfile, name) {
 
 	       if (properties.size() > 0){
     		    echo "jenkins.properties exists"
-		    keyValue = properties.getProperty(name)
+		    keys= props.keySet()
+                    for(key in keys) {
+                        value = props["${key}"]
+                        println "property values ${value}"
+                    }
 	        } else {
 	             echo "jenkins.properties does not exist"
 	       }     	    
@@ -47,7 +51,11 @@ def getProperties(envfile, name) {
     	       
 	       if (properties.size() > 0){
     		    echo "jenkins.properties exists"
-		    keyValue = properties.getProperty(name)
+		    keys= props.keySet()
+                    for(key in keys) {
+                        value = props["${key}"]
+                        println "property values ${value}"
+                    }
 	        } else {
 	             echo "jenkins.properties does not exist"
 	       } 
