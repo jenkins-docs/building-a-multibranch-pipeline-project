@@ -14,7 +14,6 @@ pipeline {
             steps {
                 sh "npm install"
                 sh "npm cache clean"
-                sh "npm start"
                 sh "npm run build"
             }
         }
