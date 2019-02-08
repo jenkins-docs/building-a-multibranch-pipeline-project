@@ -83,7 +83,7 @@ pipeline {
               steps {
 		  script {
 		     echo "build branch successful"
-		     del propValue = getProperties(development, "ACR_LOGINSERVER")
+		     def propValue = getProperties(development, "ACR_LOGINSERVER")
 		     echo "Running build on git repo ${propValue}"
 		  }
               }
