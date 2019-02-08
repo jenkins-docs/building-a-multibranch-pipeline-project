@@ -15,6 +15,8 @@ pipeline {
                 sh "npm install"
                 sh "npm cache clean"
                 sh "npm run build"
+                sh "npm install -g serve"
+                sh "serve -s build" 
             }
         }
         stage('Test') {
