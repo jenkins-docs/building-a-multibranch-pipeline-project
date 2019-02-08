@@ -14,10 +14,8 @@ pipeline {
             steps {
                 sh "npm install"
                 sh "npm cache clean"
+                sh "npm start"
                 sh "npm run build"
-                sh "chown -R $(whoami) ~/.npm"
-                sh "npm install -g serve"
-                sh "serve -s build" 
             }
         }
         stage('Test') {
