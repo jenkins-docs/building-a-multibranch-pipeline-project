@@ -21,12 +21,10 @@ def textDecodeBase64(strDecode) {
     return decodedValue
 }
 
-def getProperties(envfile, name) {
+def getProperties(envfile, encodedName) {
   
 	 def keyValue = " "
 	 def exists = fileExists envfile
-	
-	 def encodedName = Base64Coder.encodeString(name)
 	 def decodedName = Base64Coder.decodeString(encodedName)
 	
 	 println "jenkins.properties encoded key name: ${encodedName}"
@@ -75,6 +73,7 @@ pipeline {
 	scmUrl = 'https://github.com/richardjchen/building-a-multibranch-pipeline-project.git'
 	development = './config-manager/dev/jenkins.properties'
         production = './config-manager/prod/jenkins.properties'
+	serverName = "QUNSX0xPR0lOU0VSVkVS"
     }
     stages {
     	  stage('checkout git') {
@@ -113,7 +112,7 @@ pipeline {
               steps {
                  script {
 		     echo "build114 branch successful!"
-		     println getProperties(development, "ACR_LOGINSERVER")
+		     println getProperties(development, serverName)
 		     echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
        		  }
               }
@@ -125,7 +124,7 @@ pipeline {
               steps {
 	          script {
 	               echo "build114 branch successful!"
-		       println getProperties(production, "ACR_LOGINSERVER")
+		       println getProperties(production, serverName)
 	      	       echo "Running build on git repo ${properties.ACR_LOGINSERVER} branch ${properties.ACR_NAMESPACE}"
 	         }
               }
