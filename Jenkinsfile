@@ -10,7 +10,7 @@ pipeline {
         HOME = '.'
     }
     stages {
-        stage('Build') {
+        stage('Build App') {
             steps {
                 sh "npm install"
                 sh "npm cache clean"
