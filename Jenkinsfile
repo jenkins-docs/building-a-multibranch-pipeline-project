@@ -9,5 +9,13 @@ pipeline {
                 sh 'echo "Hello develop!"'
             }
         }
+        stage('Build') {
+            when {
+                branch 'master'
+            }
+            steps {
+                sh 'echo "Hello master!"'
+            }
+        }
     }
 }
