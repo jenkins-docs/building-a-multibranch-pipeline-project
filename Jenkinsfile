@@ -13,7 +13,8 @@ docker.image('openjdk:8').inside {
         */
         'HOME=.',
     ]) {
-           agent {
+           pipeline {
+                agent {
                     docker {
                         image 'node:6-alpine' 
                         args '-p 3000:3000' 
@@ -26,5 +27,6 @@ docker.image('openjdk:8').inside {
                         }
                     }
                 }
+            }
     }
 }
