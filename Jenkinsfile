@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'node' 
+            image 'node:6-alpine' 
             args '-p 3000:3000' 
         }
     }
@@ -13,3 +13,4 @@ pipeline {
         }
     }
 }
+docker run -p 8080:8080 -d --name root  jenkinsci/blueocean
