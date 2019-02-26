@@ -7,12 +7,18 @@ pipeline {
     }
     environment {
         HOME = '.'
+        CI = 'true'
     }
     stages {
         stage('Build') { 
             steps {
                 sh 'npm install' 
                 sh 'npm start &' 
+            }
+        },
+        stage('Test') {
+            steps {
+                sh './jenkins/scripts/test.sh'
             }
         }
     }
