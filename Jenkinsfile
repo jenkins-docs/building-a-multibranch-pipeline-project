@@ -11,12 +11,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // sh 'echo "Hello world!"'
+                sh 'echo "alex add it in Development branch : Hello world!"'
 		sh 'npm install'
             }
         }
 	stage('Test') {
 	    steps {
+		sh 'echo "update 002 in Development branch"'
 		sh './jenkins/scripts/test.sh'
 	    }
 	}
