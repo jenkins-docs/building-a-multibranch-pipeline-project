@@ -1,15 +1,6 @@
-pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
-        }
-    }
-    stages {
-        stage('Build') { 
-            steps {
-                sh 'mvn -B -DskipTests clean package' 
-            }
-        }
-    }
-}
+FROM node:9-alpine
+
+COPY . /src
+RUN cd /src && npm install
+EXPOSE 80
+CMD ["node", "/src/server.js"]
