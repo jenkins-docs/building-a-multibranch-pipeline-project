@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'echo "Builiding ..."'
+            }
+        }
+        stage('Deploy for DEV') {
+          when {
+              branch 'dev'
+          }
+          steps {
+             sh 'echo "Deploying to dev ..."'
+          }
+      }
+      stage('Deploy for PROD') {
+          when {
+              branch 'prod'
+          }
+          steps {
+              sh 'echo "Deploying to prod ..."'
+          }
+       }
+    }
+}
