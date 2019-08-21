@@ -17,4 +17,3 @@ you'll be creating yourself during the tutorial and the `scripts` subdirectory
 contains shell scripts with commands that are executed when Jenkins processes
 either the "Deliver for development" or "Deploy for production" stages of your
 Pipeline (depending on the branch that Jenkins builds from).
-test
