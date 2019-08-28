@@ -8,20 +8,14 @@ pipeline {
                 snDevOpsStep '5a71ec29531333007109ddeeff7b12c0'
             }
         }
-        stage('Deploy for DEV') {
-          when {
-              branch 'dev'
-          }
+        stage('DeployDEV') {
           steps {
              sh 'echo "Deploying to dev ..."'
              sleep 6
              snDevOpsStep '5271ec29531333007109ddeeff7b12c1'
           }
       }
-      stage('Deploy for PROD') {
-          when {
-              branch 'prod'
-          }
+      stage('DeployPROD') {
           steps {
               sh 'echo "Deploying to prod ..."'
               sleep 7
