@@ -9,9 +9,6 @@ pipeline {
             }
         }
         stage('Deploy for DEV') {
-          when {
-              branch 'dev'
-          }
           steps {
              sh 'echo "Deploying to dev ..."'
              sleep 6
@@ -19,9 +16,6 @@ pipeline {
           }
       }
       stage('Deploy for PROD') {
-          when {
-              branch 'prod'
-          }
           steps {
               sh 'echo "Deploying to prod ..."'
               sleep 7
