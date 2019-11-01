@@ -45,11 +45,11 @@ pipeline {
         }
         stage('SonarQube analysis') {
             environment {
-                scannerHome = tool 'SonarQubeScanner'
+                scannerHome = tool 'SonarScanner'
             }
             when { not { branch 'master' } }
             steps {
-                withSonarQubeEnv('sonarqube') {
+                withSonarQubeEnv('SonarQube') {
                     sh '''
                     ${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectName=${GIT_URL##*/} \
