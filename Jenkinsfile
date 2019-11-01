@@ -1,17 +1,19 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:6-alpine'
-//            args '-p 3000:3000 -p 5050:5000' 
-        }
-    }
+    agent { label jenkins-slave }
     environment {
         CI = 'true'
     }
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh '''
+                set +ex
+                export NVM_DIR="$HOME/.nvm"
+                . ~/.nvm/nvm.sh
+                nvm install 10.16.3
+                set -ex
+                npm install
+                '''
             }
         }
         stage('Test') {
