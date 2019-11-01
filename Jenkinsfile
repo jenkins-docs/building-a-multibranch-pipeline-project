@@ -2,6 +2,7 @@ pipeline {
     agent { label 'docker-slave' }
     environment {
         CI = 'true'
+        NODE_VERSION = '10.16.0'
     }
     stages {
         stage('Build') {
@@ -10,14 +11,21 @@ pipeline {
                 set +ex
                 export NVM_DIR="$HOME/.nvm"
                 . ~/.nvm/nvm.sh
-                nvm install 10.16.0
+                nvm install $NODE_VERSION
+                set -ex
                 npm install
                 '''
             }
         }
         stage('Test') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                sh '''
+                set +ex
+                . ~/.nvm/nvm.sh
+                nvm use $NODE_VERSION
+                set -ex
+                ./jenkins/scripts/test.sh
+                '''
             }
         }
         stage('SonarQube'){
