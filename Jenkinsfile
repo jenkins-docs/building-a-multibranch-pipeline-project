@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'jenkins-slave' }
+    agent { label 'docker-slave' }
     environment {
         CI = 'true'
     }
