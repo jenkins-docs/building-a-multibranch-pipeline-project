@@ -28,7 +28,7 @@ pipeline {
                 '''
             }
         }
-        stage('SonarQube'){
+        stage('SonarQube analysis - master branch'){
             environment {
                 scannerHome = tool 'SonarScanner'
             }
@@ -43,6 +43,22 @@ pipeline {
                 }
             }        
         }
+        stage('SonarQube analysis') {
+            environment {
+                scannerHome = tool 'SonarQubeScanner'
+            }
+            when { not { branch 'master' } }
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh '''
+                    ${scannerHome}/bin/sonar-scanner \
+                        -Dsonar.projectName=${GIT_URL##*/} \
+                        -Dsonar.projectKey=${GIT_URL##*/} \
+                        -Dsonar.branch.name=${GIT_BRANCH}
+                    '''
+                }
+            }
+        }        
         stage('Deliver for development') {
             when {
                 branch 'development'
