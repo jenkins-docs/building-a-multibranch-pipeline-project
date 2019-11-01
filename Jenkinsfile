@@ -19,6 +19,21 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
+        stage('SonarQube'){
+            environment {
+                scannerHome = tool 'SonarScanner'
+            }
+            when { branch 'master' }
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh '''
+                    ${scannerHome}/bin/sonar-scanner \
+                        -Dsonar.projectName=${GIT_URL##*/} \
+                        -Dsonar.projectKey=${GIT_URL##*/}
+                    '''
+                }
+            }        
+        }
         stage('Deliver for development') {
             when {
                 branch 'development'
