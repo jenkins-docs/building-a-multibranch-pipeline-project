@@ -7,11 +7,6 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                set +ex
-                export NVM_DIR="$HOME/.nvm"
-                . ~/.nvm/nvm.sh
-                nvm install 10.16.3
-                set -ex
                 npm install
                 '''
             }
