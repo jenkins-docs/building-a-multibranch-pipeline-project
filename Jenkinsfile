@@ -46,4 +46,3 @@ pipeline {
     CI = 'true'
   }
 }
-
