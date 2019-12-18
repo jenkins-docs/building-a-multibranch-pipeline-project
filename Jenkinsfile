@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh 'echo "Hello compile!"'
             }
-        
+        }
         stage('testing sonar') {
             steps {
                 sh 'echo "Hello sonar!"'
