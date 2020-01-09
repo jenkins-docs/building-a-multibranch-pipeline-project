@@ -8,7 +8,7 @@ pipeline {
         }
         stage('compile') {
             steps {
-                sh 'echo "Hello compile!"'
+                sh 'echo "Hello compile santhu!"'
             }
         }
         stage('testing sonar') {
