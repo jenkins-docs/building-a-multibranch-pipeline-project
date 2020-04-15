@@ -20,6 +20,16 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
+        stage('Deliver for PR in Staging'){
+            when {
+                expression { BRANCH_NAME ==~ /PR-\d+/ } 
+            }
+            steps {
+                sh './jenkins/scripts/deliver-for-development.sh'
+                input message: 'Finished using the web site ? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
         stage('Deliver for development') {
             when {
                 branch 'dev'
