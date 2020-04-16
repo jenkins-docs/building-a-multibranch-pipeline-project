@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Deliver for PR in Staging'){
             when {
-                expression { BRANCH_NAME ==~ /PR-\d+/ }
+                expression { BRANCH_NAME ==~ /PR-\d+/ } 
             }
             steps {
                 sh './jenkins/scripts/deliver-for-development.sh'
