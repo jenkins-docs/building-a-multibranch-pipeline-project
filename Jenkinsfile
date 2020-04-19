@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'echo "Test Complete!"'
+                sh 'tidy -q -e *.html'
             }
         }
         stage('Deliver for development') {
