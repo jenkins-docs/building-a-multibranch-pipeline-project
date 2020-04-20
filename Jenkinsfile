@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install --save-dev extract-text-webpack-plugin'
+                sh 'npm install'
             }
         }
         stage('Test') {
