@@ -34,6 +34,6 @@ echo $! > .pidfile
 set +x
 
 echo 'Now...'
-echo 'Visit http://localhost:5000 to see your Node.js/React application in action.'
+echo 'Visit http://192.168.99.15:5000 to see your Node.js/React application in action.'
 echo '(This is why you specified the "args ''-p 5000:5000''" parameter when you'
 echo 'created your initial Pipeline as a Jenkinsfile.)'
