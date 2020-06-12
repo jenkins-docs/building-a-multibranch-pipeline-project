@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('java code pull') {
             steps {
-                sh 'echo "Hello java c+!"'
+                sh 'echo "Hello java c+!, sathvick"'
             }
         }
         stage('compile') {
