@@ -4,7 +4,7 @@ This repository is for the
 [Build a multibranch Pipeline project](https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/)
 tutorial in the [Jenkins User Documentation](https://jenkins.io/doc/).wwww
 
-This tutorial uses the same application that the [Build a Node.js and React app
+This tutorial uses the same application that the [Build a Node.js and React appwwewe
 with
 npm](https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm/)
 tutorial is based on. Therefore, you'll be building and testing the same
