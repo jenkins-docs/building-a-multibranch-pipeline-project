@@ -7,7 +7,7 @@ tutorial in the [Jenkins User Documentation](https://jenkins.io/doc/).
 This tutorial uses the same application that the [Build a Node.js and React app
 with
 npm](https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm/)
-tutorial is based on. Therefore, you'll be building and testing the same
+tutorial is based on. Therefore, you'll be building and testing the same222
 application but this time, its delivery will be different depending on the Git
 branch that Jenkins builds from. That is, the branch being built determines
 which delivery stage of your Pipeline is executed.
