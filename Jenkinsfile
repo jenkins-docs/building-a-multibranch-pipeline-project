@@ -32,8 +32,8 @@ pipeline {
           always {
             // Clean-up working dir
             //sh 'mvn clean'
-            sh 'echo ENDDDD'
-            cleanWs()
+            echo 'One way or another, I have finished'
+            deleteDir() /* clean up our workspace */
             //_slackSend()
           }
       }
