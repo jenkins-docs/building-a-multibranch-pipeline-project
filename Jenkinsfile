@@ -18,7 +18,7 @@ pipeline {
         //script { _slackSend() }
         // Build Scaffold artifacts.
         //sh 'mvn clean compile && mvn clean package'
-        sh 'echo Helloooo'
+        sh 'echo Hell1111'
         // Build and publish docker images from any branch with tags:
         // ${BRANCH_NAME}
         // ${BRANCH_NAME}-${GIT_SHORT_HASH}-${TIMESTAMP}
