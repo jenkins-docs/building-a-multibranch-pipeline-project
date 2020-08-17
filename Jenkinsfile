@@ -33,6 +33,7 @@ pipeline {
             // Clean-up working dir
             //sh 'mvn clean'
             sh 'echo ENDDDD'
+            cleanWs()
             //_slackSend()
           }
       }
