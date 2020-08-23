@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Hello world!, This is Prod Env."'
+                sh 'echo "Hello world!, This is Prod Env. "'
             }
         }
     }
