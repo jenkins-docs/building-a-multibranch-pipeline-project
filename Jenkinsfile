@@ -1,9 +1,26 @@
 pipeline {
     agent any
+    options {
+        timestamps()
+    }
+    triggers {
+        bitbucketPush()
+    }
     stages {
-        stage('Build') {
+        stage('Build Project A') {
+            when {
+                changeset "project-a/**"
+            }
             steps {
-                sh 'echo "Hello world!"'
+                sh "echo project-a"
+            }
+        }
+        stage('Build project B') {
+            when {
+                changeset "project-b/**"
+            }
+            steps {
+                sh "echo project-b"
             }
         }
     }
