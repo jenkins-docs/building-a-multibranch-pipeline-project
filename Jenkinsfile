@@ -8,6 +8,7 @@ pipeline {
         stage('Build Project A') {
             when {
                 changeset "project-a/**"
+                changeRequest target: 'master'
             }
             steps {
                 sh "echo project-a"
@@ -16,6 +17,7 @@ pipeline {
         stage('Build project B') {
             when {
                 changeset "project-b/**"
+                changeRequest target: 'master'
             }
             steps {
                 sh "echo project-b"
