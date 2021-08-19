@@ -2,6 +2,7 @@ pipeline {
     agent any
     options {
         timestamps()
+        triggers{ cron('H/2 * * * *') }
     }
     stages {
         stage('Build Project A') {
