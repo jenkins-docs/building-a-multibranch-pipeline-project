@@ -2,7 +2,7 @@ pipeline {
     agent any
     options {
         timestamps()
-        triggers{ cron('H/2 * * * *') }
+        triggers{ pollSCM('* * * * 1-5') }
     }
     stages {
         stage('Build Project A') {
