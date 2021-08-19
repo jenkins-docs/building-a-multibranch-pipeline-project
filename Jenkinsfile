@@ -20,5 +20,9 @@ pipeline {
                 sh "echo project-b"
             }
         }
+        stage('Common')
+          steps {
+                sh "echo in-common"
+            }
     }
 }
