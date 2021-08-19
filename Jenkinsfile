@@ -2,7 +2,6 @@ pipeline {
     agent any
     options {
         timestamps()
-        triggers{ pollSCM('* * * * 1-5') }
     }
     stages {
         stage('Build Project A') {
@@ -27,5 +26,6 @@ pipeline {
           steps {
                 sh "echo in-common"
             }
+        }
     }
 }
