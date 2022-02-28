@@ -1,12 +1,9 @@
 pipeline {
-    agent 
-    {
-        docker
+    agent docker
         {
            label 'docker-node'
         }
       
-    }
     environment {
         CI = 'true'
     }
