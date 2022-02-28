@@ -1,28 +1,28 @@
 pipeline {
-    agent any
-    /*
+    agent 
     {
         docker
         {
-            image 'node:6-alpine'
-            args '-p 3000:3000 -p 5000:5000'
+           label 'docker-node'
         }
       
     }
-    */
     environment {
         CI = 'true'
     }
-    
+    /*
     tools {
         nodejs 'node17' 
     }
+    */
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                 sh 'java --version'
+               /* sh 'npm install'. */
             }
         }
+        /*
         stage('Test') {
             steps {
                 sh './jenkins/scripts/test.sh'
@@ -52,5 +52,6 @@ pipeline {
    
             }
         }
+        */
     }
 }
