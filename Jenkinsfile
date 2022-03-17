@@ -1,4 +1,4 @@
-pipeline {#
+pipeline {
     agent {
         docker {
             image 'node:lts-bullseye-slim' 
