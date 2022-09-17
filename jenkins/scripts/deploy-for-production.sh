@@ -22,14 +22,14 @@ echo 'The following "serve" command runs the npm serve module (downloaded'
 echo 'above) deploys your Node.js/React application (built above in production'
 echo 'mode) for production and makes the application available for web browsing.'
 echo 'The "serve" command has a trailing ampersand so that the command runs'
-echo 'as a background process (i.e. asynchronously). Otherwise, this command'
+echo 'as a background process (asynchronously). Otherwise, this command'
 echo 'can pause running builds of CI/CD applications indefinitely. "serve"'
 echo 'is followed by another command that retrieves the process ID (PID) value'
 echo 'of the previously run process (i.e. "serve") and writes this value to'
 echo 'the file ".pidfile".'
 set -x
-./node_modules/serve/bin/serve.js -c 0 -s build &
-sleep 1
+# serve -s build -l 5000 &
+./node_modules/serve/build/main.js -s build -l 3000 &
 echo $! > .pidfile
 set +x
 
