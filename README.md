@@ -18,7 +18,7 @@ contains shell scripts with commands that are executed when Jenkins processes
 either the "Deliver for development" or "Deploy for production" stages of your
 Pipeline (depending on the branch that Jenkins builds from).
 
-# Getting Started with Create React App (from npx create-react-app in the [tutorial(https://create-react-app.dev/docs/getting-started/))
+# Getting Started with Create React App ([npx create-react-app tutorial](https://create-react-app.dev/docs/getting-started/))
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
