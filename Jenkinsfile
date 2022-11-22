@@ -39,7 +39,7 @@ pipeline {
                 sh 'chmod +x ./jenkins/scripts/deliver-for-QA.sh'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh 'sh ./jenkins/scripts/deliver-for-QA.sh'
-                // sh './jenkins/scripts/kill.sh'
+                sh './jenkins/scripts/kill.sh'
             }
         }
         // stage('Deploy for production') {
