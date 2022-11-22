@@ -35,8 +35,7 @@ pipeline {
                 branch 'QA'
             }
             steps {
-                echo $(pwd)
-                echo $(pwd)
+                sh 'echo $(pwd)'
                 // sh './jenkins/scripts/deliver-for-QA.sh'
                 // input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 // sh './jenkins/scripts/kill.sh'
