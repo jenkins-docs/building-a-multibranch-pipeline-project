@@ -36,7 +36,6 @@ pipeline {
             }
             steps {
                 sh echo $(pwd)
-                sh cd jenkins/
                 sh echo $(pwd)
                 // sh './jenkins/scripts/deliver-for-QA.sh'
                 // input message: 'Finished using the web site? (Click "Proceed" to continue)'
