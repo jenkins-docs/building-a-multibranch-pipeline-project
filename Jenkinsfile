@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     // agent {
     // //     docker {
     // //         image 'node:lts-alpine'
