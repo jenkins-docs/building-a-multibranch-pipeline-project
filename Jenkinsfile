@@ -30,6 +30,16 @@ pipeline {
                 sh './jenkins/scripts/kill.sh'
             }
         }
+        stage('Deliver for QA') {
+            when {
+                branch 'QA'
+            }
+            steps {
+                sh './jenkins/scripts/deliver-for-QA.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
         stage('Deploy for production') {
             when {
                 branch 'production'
