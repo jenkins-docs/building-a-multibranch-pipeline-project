@@ -35,9 +35,10 @@ pipeline {
                 branch 'QA'
             }
             steps {
-                sh './jenkins/scripts/deliver-for-QA.sh'
+                bash whoami
+                bash './jenkins/scripts/deliver-for-QA.sh'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                bash './jenkins/scripts/kill.sh'
             }
         }
         stage('Deploy for production') {
