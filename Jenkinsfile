@@ -1,4 +1,3 @@
-//#!groovy
 properties([disableConcurrentBuilds()])
 pipeline {
     options {
@@ -11,10 +10,6 @@ pipeline {
             args '-p 3000:3000 -p 5000:5000' 
         }
     }
-//    options {
-//      buildDiscarder(logRaotator(numToKeepStr:'10',artifactNumToKeepStr: '10')
-//      timestamps()    
-//    }
     environment {
         CI = 'true'
     }
