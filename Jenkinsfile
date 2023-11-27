@@ -8,7 +8,7 @@ pipeline {
     }
     options{
       buildDiscarder(logRaotator(numToKeepStr:'10',artifactNumToKeepStr: '10')
-      timestamps()    
+//      timestamps()    
     }
     environment {
         CI = 'true'
