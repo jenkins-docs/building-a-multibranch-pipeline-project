@@ -1,4 +1,5 @@
 //#!groovy
+properties([disableConcurrentBuilds()])
 pipeline {
     agent {
         docker {
