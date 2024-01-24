@@ -20,9 +20,6 @@ pipeline {
             }
         }
         stage('Deliver for development') {
-            when {
-                branch 'development' 
-            }
             steps {
                 sh './jenkins/scripts/deliver-for-development.sh'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
@@ -30,9 +27,6 @@ pipeline {
             }
         }
         stage('Deploy for production') {
-            when {
-                branch 'production'  
-            }
             steps {
                 echo "Deploying to Production"
                 sh './jenkins/scripts/deploy-for-production.sh'
