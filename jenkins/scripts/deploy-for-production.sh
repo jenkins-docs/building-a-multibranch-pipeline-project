@@ -4,6 +4,7 @@ echo 'The following "npm" command builds your Node.js/React application for'
 echo 'production in the local "build" directory (i.e. within the appropriate'
 echo 'subdirectory of "/var/jenkins_home/workspace/"), correctly bundles React'
 echo 'in production mode and optimizes the build for the best performance.'
+
 set -x
 npm run build
 set +x
@@ -14,6 +15,7 @@ echo '"node_modules" directory (i.e. within the appropriate subdirectory of'
 echo '"/var/jenkins_home/workspace/"), which means that this module should not'
 echo 'need to be downloaded after this Pipeline''s initial run for a given'
 echo 'branch.'
+
 set -x
 npm install serve --save
 set +x
@@ -27,9 +29,10 @@ echo 'can pause running builds of CI/CD applications indefinitely. "serve"'
 echo 'is followed by another command that retrieves the process ID (PID) value'
 echo 'of the previously run process (i.e. "serve") and writes this value to'
 echo 'the file ".pidfile".'
+
 set -x
-serve -s build -l 5000 &
-# ./node_modules/serve/build/main.js -s build -l 5000 &
+#serve -s build -l 5000 &
+./node_modules/serve/build/main.js -s build -l 5000 &
 echo $! > .pidfile
 set +x
 
