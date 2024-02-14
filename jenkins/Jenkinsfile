@@ -39,6 +39,7 @@ pipeline {
                 sh './jenkins/scripts/kill.sh'
             }
         }
+        
         stage('Deploy for production') {
             when {
                 branch 'production'  
