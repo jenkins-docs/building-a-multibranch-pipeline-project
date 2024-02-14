@@ -25,6 +25,7 @@ pipeline {
                 branch 'development' 
             }
 
+            agent { docker 'docker:latest' }
             steps {
                 sh 'docker build . -t test-app'
             }
