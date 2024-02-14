@@ -19,6 +19,16 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
+                
+        stage('Build image') {
+            when {
+                branch 'development' 
+            }
+            steps {
+                def testImage = docker.build("test-image", "./Dockerfile")
+            }
+        }
+
         stage('Deliver for development') {
             when {
                 branch 'development' 
