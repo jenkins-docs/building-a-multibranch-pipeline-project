@@ -3,6 +3,7 @@ pipeline {
         docker {
             image 'node:20.11.0-alpine3.19'
             args '--user root:root --publish 3000:3000 --publish 5000:5000 --name docker-from-jenkins'
+            reuseNode true
         }
     }
     environment {
