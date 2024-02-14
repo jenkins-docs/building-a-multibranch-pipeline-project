@@ -36,15 +36,6 @@ pipeline {
             }
         }
 
-        stage('Build image') {
-            when {
-                branch 'development' 
-            }
-            steps {
-                def testImage = docker.build("test-image", "./Dockerfile")
-            }
-        }
-
         stage('Deploy for production') {
             when {
                 branch 'production'  
