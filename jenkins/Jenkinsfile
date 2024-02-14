@@ -25,7 +25,9 @@ pipeline {
                 branch 'development' 
             }
             steps {
-                def testImage = docker.build("test-image", "./Dockerfile")
+                node {
+                    def testImage = docker.build("test-image", "./Dockerfile")
+                }
             }
         }
 
@@ -39,7 +41,7 @@ pipeline {
                 sh './jenkins/scripts/kill.sh'
             }
         }
-        
+
         stage('Deploy for production') {
             when {
                 branch 'production'  
