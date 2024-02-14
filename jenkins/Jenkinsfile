@@ -29,11 +29,13 @@ pipeline {
             //    checkout scm
             //    def testImage = docker.build("test-image", "./Dockerfile")
             //}
-            docker {
-                steps {
+            
+            steps {
+                docker {
                     sh 'docker build -t test-image .'
                 }
             }
+
 
         }
 
