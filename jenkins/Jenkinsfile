@@ -25,10 +25,14 @@ pipeline {
                 branch 'development' 
             }
 
-            //def testImage = docker.build("test-image", "./Dockerfile")
             steps {
-                sh 'docker build -t test-image .'
+                checkout scm
+                def testImage = docker.build("test-image", "./Dockerfile")
             }
+
+            //steps {
+            //    sh 'docker build -t test-image .'
+            //}
         }
 
         stage('Deliver for development') {
