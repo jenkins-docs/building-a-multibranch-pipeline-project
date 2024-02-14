@@ -29,7 +29,7 @@ pipeline {
             //    checkout scm
             //    def testImage = docker.build("test-image", "./Dockerfile")
             //}
-            agent any
+
             steps {
                 sh 'docker build -t test-image .'
             }
