@@ -24,11 +24,9 @@ pipeline {
             when {
                 branch 'development' 
             }
-            steps {
-                node {
-                    def testImage = docker.build("test-image", "./Dockerfile")
-                }
-            }
+
+            def testImage = docker.build("test-image", "./Dockerfile")
+
         }
 
         stage('Deliver for development') {
