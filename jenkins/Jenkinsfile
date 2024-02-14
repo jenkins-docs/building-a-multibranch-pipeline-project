@@ -25,17 +25,9 @@ pipeline {
                 branch 'development' 
             }
 
-            //steps {
-            //    checkout scm
-            //    def testImage = docker.build("test-image", "./Dockerfile")
-            //}
-            
             steps {
-                docker {
-                    sh 'docker build -t test-image .'
-                }
+                sh 'docker build . -t test-app'
             }
-
 
         }
 
