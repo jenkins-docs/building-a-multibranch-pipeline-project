@@ -19,22 +19,22 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-                
+        
+        // #########################################
         stage('Build image') {
             when {
                 branch 'development' 
             }
-
-            agent {
-                docker {
-                    image 'alpine:latest'
+            steps {
+                echo 'Starting to build docker image'
+                script {
+                    def customImage = docker.build("test-image", "./Dockerfile")
+                    //def customImage = docker.build("my-image:${env.BUILD_ID}")
+                    //customImage.push()
                 }
             }
-            steps {
-                sh 'docker build . -t test-app'
-            }
-
         }
+        // #########################################
 
         stage('Deliver for development') {
             when {
