@@ -25,7 +25,11 @@ pipeline {
                 branch 'development' 
             }
 
-            agent { docker 'alpine:latest' }
+            agent {
+                docker {
+                    image 'alpine:latest'
+                }
+            }
             steps {
                 sh 'docker build . -t test-app'
             }
