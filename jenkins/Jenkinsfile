@@ -21,20 +21,25 @@ pipeline {
             }
         }
         
-        // #########################################
+        // Build dell'immagine dell'applicazione
         stage('Build image') {
+
             when {
                 branch 'development' 
             }
+
             steps {
                 echo 'Starting to build docker image'
                 
-                // Questo funziona correttamente
+                // Aggiunge docker cli al container
                 sh 'apk update && apk add docker-cli'
-                sh 'docker -v'
+                //sh 'docker -v'
                 //sh 'docker image rm test-image:1'
                 sh 'docker build --force-rm=true -t test-image:${BUILD_ID} -f Dockerfile .'
-                
+
+                // Elimina eventuali dangling images
+                //sh 'docker image prune -f'
+
                 //script {
                 //    def customImage = docker.build("test-image:1")
                 //    //def customImage = docker.build("my-image:${env.BUILD_ID}")
@@ -42,7 +47,7 @@ pipeline {
                 //}
             }
         }
-        // #########################################
+
 
         stage('Deliver for development') {
             when {
