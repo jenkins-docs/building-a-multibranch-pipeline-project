@@ -10,9 +10,6 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('nicola@goinnova.eu:vhp2raw9EXC0ytc!fuj')
-    }
-    
-    environment {
         CI = 'true'
     }
     
