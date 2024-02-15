@@ -28,14 +28,14 @@ pipeline {
         
         // Build dell'immagine dell'applicazione
         stage('Build image') {
-
-            when {
-                branch 'development' 
-            }
-            environment {
+	    environment {
 		DOCKERHUB_CREDENTIALS = credentials('nicola@goinnova.eu:vhp2raw9EXC0ytc!fuj')
 	    }
 		
+            when {
+                branch 'development' 
+            }
+
             steps {
                 echo 'Starting to build docker image'
                 
