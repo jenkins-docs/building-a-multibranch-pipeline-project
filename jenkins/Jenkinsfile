@@ -27,6 +27,7 @@ pipeline {
             }
             steps {
                 echo 'Starting to build docker image'
+                sh 'apt-get update && apt-get install -y docker-ce docker-ce-cli'
                 sh 'docker build -t test-image:1 .'
                 //script {
                 //    def customImage = docker.build("test-image:1")
