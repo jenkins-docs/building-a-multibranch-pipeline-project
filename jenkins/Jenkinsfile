@@ -9,7 +9,6 @@ pipeline {
     }
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('nicola@goinnova.eu:vhp2raw9EXC0ytc!fuj')
         CI = 'true'
     }
     
@@ -33,7 +32,10 @@ pipeline {
             when {
                 branch 'development' 
             }
-
+            environment {
+		DOCKERHUB_CREDENTIALS = credentials('nicola@goinnova.eu:vhp2raw9EXC0ytc!fuj')
+	    }
+		
             steps {
                 echo 'Starting to build docker image'
                 
