@@ -10,7 +10,6 @@ pipeline {
 
     environment {
         CI = 'true'
-	DOCKERHBU_CREDENTIALS = credentials('dockerhub-credentials')
     }
     
     stages {
@@ -32,7 +31,10 @@ pipeline {
             when {
                 branch 'development' 
             }
-
+	    environment {
+	        DOCKERHBU_CREDENTIALS = credentials('dockerhub-credentials')
+    	    }
+		
             steps {
                 echo 'Starting to build docker image'
                 
@@ -46,8 +48,8 @@ pipeline {
                 //sh 'docker image prune -f'
 
                 // Push image to Dockerhub
-                //sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                		
-	        //echo 'Login Completed'   
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                		
+	        echo 'Login Completed'   
             }
         }
 
