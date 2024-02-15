@@ -37,16 +37,8 @@ pipeline {
                 //sh 'docker image rm test-image:1'
                 sh 'docker buildx build --force-rm=true -t test-image:${BUILD_ID} -f Dockerfile .'
 
-                
-
                 // Elimina eventuali dangling images
                 //sh 'docker image prune -f'
-
-                //script {
-                //    def customImage = docker.build("test-image:1")
-                //    //def customImage = docker.build("my-image:${env.BUILD_ID}")
-                //    //customImage.push()
-                //}
             }
         }
 
