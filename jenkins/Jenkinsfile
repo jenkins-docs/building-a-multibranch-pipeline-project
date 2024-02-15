@@ -37,6 +37,9 @@ pipeline {
                 //sh 'docker image rm test-image:1'
                 sh 'docker build --force-rm=true -t test-image:${BUILD_ID} -f Dockerfile .'
 
+                // Crea il container
+                sh 'docker run -d -p 3000:3000 --name prova test-image:${BUILD_ID}'
+
                 // Elimina eventuali dangling images
                 //sh 'docker image prune -f'
 
