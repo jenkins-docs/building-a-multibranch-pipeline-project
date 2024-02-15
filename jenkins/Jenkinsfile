@@ -28,9 +28,10 @@ pipeline {
         
         // Build dell'immagine dell'applicazione
         stage('Build image') {
-	    //environment {
-	    //	DOCKERHUB_CREDENTIALS = credentials('nicola@goinnova.eu:vhp2raw9EXC0ytc!fuj')
-	    //}
+	    environment {
+	    	//DOCKERHUB_CREDENTIALS = credentials('nicola@goinnova.eu:vhp2raw9EXC0ytc!fuj')
+		PIPPO = credentials('xxx')
+	    }
 		
             when {
                 branch 'development' 
