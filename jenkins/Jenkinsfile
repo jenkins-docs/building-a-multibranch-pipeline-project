@@ -33,7 +33,7 @@ pipeline {
                 sh 'apk update && apk add docker-cli'
                 sh 'docker -v'
                 //sh 'docker image rm test-image:1'
-                sh 'docker build -t test-image:1 .'
+                sh 'docker build -t test-image:${env.BUILD_ID} -f Dockerfile .'
                 
                 //script {
                 //    def customImage = docker.build("test-image:1")
