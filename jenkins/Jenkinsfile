@@ -33,9 +33,10 @@ pipeline {
                 
                 // Aggiunge docker cli al container
                 sh 'apk update && apk add docker-cli'
+                sh 'apk add docker-buildx'
                 //sh 'docker -v'
                 //sh 'docker image rm test-image:1'
-                sh 'docker build --force-rm=true -t test-image:${BUILD_ID} -f Dockerfile .'
+                sh 'docker buildx --force-rm=true -t test-image:${BUILD_ID} -f Dockerfile .'
 
                 
 
