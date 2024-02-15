@@ -37,8 +37,7 @@ pipeline {
                 //sh 'docker image rm test-image:1'
                 sh 'docker build --force-rm=true -t test-image:${BUILD_ID} -f Dockerfile .'
 
-                // Crea il container
-                sh 'docker run -d -p 3000:3000 --name prova test-image:${BUILD_ID}'
+                
 
                 // Elimina eventuali dangling images
                 //sh 'docker image prune -f'
@@ -57,9 +56,13 @@ pipeline {
                 branch 'development' 
             }
             steps {
-                sh './jenkins/scripts/deliver-for-development.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                // Crea il container
+                //sh 'docker run -d -p 3000:3000 --name prova test-image:${BUILD_ID}'
+                sh 'docker run -d --name prova test-image:${BUILD_ID}'
+
+                //sh './jenkins/scripts/deliver-for-development.sh'
+                //input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                //sh './jenkins/scripts/kill.sh'
             }
         }
 
