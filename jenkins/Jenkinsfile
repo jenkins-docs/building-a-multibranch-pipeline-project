@@ -39,7 +39,7 @@ pipeline {
                 echo 'Starting to build docker image'
                 
                 // Aggiunge docker cli al container
-                sh 'apk update && apk add docker-cli docker-cli-buildx'
+                sh 'apk update && apk add docker-cli docker-cli-buildx sudo'
                 //sh 'docker -v'
                 //sh 'docker image rm test-image:1'
                 sh 'docker buildx build --force-rm=true -t test-image:${BUILD_ID} -f Dockerfile .'
