@@ -1,4 +1,5 @@
 pipeline {
+    
     agent {
         docker {
             image 'node:20.11.0-alpine3.19'
@@ -6,15 +7,19 @@ pipeline {
             reuseNode true
         }
     }
+    
     environment {
         CI = 'true'
     }
+    
     stages {
+        
         stage('Build') { 
             steps {
                 sh 'npm install'
             }
         }
+        
         stage('Test') {
             steps {
                 sh './jenkins/scripts/test.sh'
@@ -42,7 +47,6 @@ pipeline {
             }
         }
 
-
         stage('Deliver for development') {
             when {
                 branch 'development' 
@@ -57,7 +61,7 @@ pipeline {
                 //sh './jenkins/scripts/kill.sh'
             }
         }
-
+        
         stage('Deploy for production') {
             when {
                 branch 'production'  
