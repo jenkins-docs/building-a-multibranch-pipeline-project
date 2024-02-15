@@ -58,7 +58,7 @@ pipeline {
             steps {
                 // Crea il container
                 //sh 'docker run -d -p 3000:3000 --name prova test-image:${BUILD_ID}'
-                sh 'docker run -d --name prova${BUILD_ID} test-image:${BUILD_ID}'
+                sh 'docker run -d --name prova${BUILD_ID} --publish 3001:3000 test-image:${BUILD_ID}'
 
                 //sh './jenkins/scripts/deliver-for-development.sh'
                 //input message: 'Finished using the web site? (Click "Proceed" to continue)'
