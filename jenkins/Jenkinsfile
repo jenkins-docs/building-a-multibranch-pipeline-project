@@ -48,9 +48,9 @@ pipeline {
                 //sh 'docker image prune -f'
 
                 // Push image to Dockerhub
-		sh 'sudo chmod 0700 ./jenkins/scripts/docker-push.sh'
+		        sh 'sudo chmod 0700 ./jenkins/scripts/docker-push.sh'
                 sh './jenkins/scripts/docker-push.sh'                		
-	        echo 'Push Completed'   
+	            echo 'Push Completed'   
             }
         }
 
