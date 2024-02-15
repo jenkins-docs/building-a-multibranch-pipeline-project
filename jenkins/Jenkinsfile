@@ -10,7 +10,7 @@ pipeline {
 
     environment {
         CI = 'true'
-	DOCKERHBU_CREDENTIALS = credentials('xxx')
+	DOCKERHBU_CREDENTIALS = 'xxx'
     }
     
     stages {
