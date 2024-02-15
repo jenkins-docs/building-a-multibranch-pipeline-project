@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo 'Starting to build docker image'
                 script {
-                    def customImage = docker.build("test-image", "./Dockerfile")
+                    def customImage = docker.build("test-image:1")
                     //def customImage = docker.build("my-image:${env.BUILD_ID}")
                     //customImage.push()
                 }
