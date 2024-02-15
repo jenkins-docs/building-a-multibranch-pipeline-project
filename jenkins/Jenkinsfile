@@ -7,6 +7,10 @@ pipeline {
             reuseNode true
         }
     }
+
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('nicola@goinnova.eu:vhp2raw9EXC0ytc!fuj')
+    }
     
     environment {
         CI = 'true'
@@ -44,6 +48,10 @@ pipeline {
 
                 // Elimina eventuali dangling images
                 //sh 'docker image prune -f'
+
+                // Push image to Dockerhub
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                		
+	            echo 'Login Completed'   
             }
         }
 
