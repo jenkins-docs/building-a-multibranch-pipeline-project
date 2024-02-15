@@ -27,8 +27,12 @@ pipeline {
             }
             steps {
                 echo 'Starting to build docker image'
-                sh 'apk update && apk add docker'
+                
+                // Questo funziona correttamente
+                sh 'apk update && apk add docker-cli'
+                sh 'docker -v'
                 sh 'docker build -t test-image:1 .'
+                
                 //script {
                 //    def customImage = docker.build("test-image:1")
                 //    //def customImage = docker.build("my-image:${env.BUILD_ID}")
