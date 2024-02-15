@@ -31,6 +31,7 @@ pipeline {
                 // Questo funziona correttamente
                 sh 'apk update && apk add docker-cli'
                 sh 'docker -v'
+                sh 'docker image rm test-image:1'
                 sh 'docker build -t test-image:1 .'
                 
                 //script {
