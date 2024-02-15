@@ -50,7 +50,7 @@ pipeline {
                 // Push image to Dockerhub
 		sh 'sudo chmod 0700 ./jenkins/scripts/docker-push.sh'
                 sh './jenkins/scripts/docker-push.sh'                		
-	        echo 'Login Completed'   
+	        echo 'Push Completed'   
             }
         }
 
