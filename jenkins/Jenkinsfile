@@ -45,6 +45,7 @@ pipeline {
                 //sh 'docker buildx build -h'
                 
                 //sh 'docker buildx build --force-rm=true -t test-image:${BUILD_ID} -f Dockerfile .'
+		sh 'cat Dockerfile'
                 sh 'sudo docker buildx build --force-rm=true -t test-image:${BUILD_ID} -f Dockerfile .'
 
                 // Elimina eventuali dangling images
