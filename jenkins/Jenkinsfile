@@ -45,7 +45,9 @@ pipeline {
                 //sh 'docker buildx build -h'
                 
                 //sh 'docker buildx build --force-rm=true -t test-image:${BUILD_ID} -f Dockerfile .'
-                sh 'docker build --force-rm=true -t test-image:${BUILD_ID} -f Dockerfile .'
+
+                sh 'groupadd -g 1111 docker && gpasswd -a jenkins-agent-1 docker'
+                sh 'docker buildx build --force-rm=true -t test-image:${BUILD_ID} -f Dockerfile .'
 
                 // Elimina eventuali dangling images
                 //sh 'docker image prune -f'
