@@ -29,7 +29,7 @@ echo 'of the previously run process (i.e. "serve") and writes this value to'
 echo 'the file ".pidfile".'
 set -x
 # serve -s build -l 5000 &
-./node_modules/serve/build/main.js -s build -l 3000 &
+./node_modules/serve/build/main.js -s build -l 5000 &
 echo $! > .pidfile
 set +x
 
