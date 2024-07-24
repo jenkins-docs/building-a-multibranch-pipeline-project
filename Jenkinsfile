@@ -14,22 +14,22 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Deliver for development1') {
+        stage('Deliver for development') {
             when {
-                branch 'development1' 
+                branch 'development' 
             }
             steps {
-                sh './jenkins/scripts/deliver-for-development1.sh'
+                sh './jenkins/scripts/deliver-for-development.sh'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh './jenkins/scripts/kill.sh'
             }
         }
-        stage('Deploy for production1') {
+        stage('Deploy for production') {
             when {
-                branch 'production1'  
+                branch 'production'  
             }
             steps {
-                sh './jenkins/scripts/deploy-for-production1.sh'
+                sh './jenkins/scripts/deploy-for-production.sh'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh './jenkins/scripts/kill.sh'
             }
