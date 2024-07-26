@@ -14,7 +14,13 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-     stage('Deliver for development') {
+        stage('Ansible Build') {
+            steps {
+                // Run Ansible playbook
+                sh 'ansible-playbook -i inventory deploy.yml'
+            }
+        }
+        stage('Deliver for development') {
             when {
                 branch 'development' 
             }
