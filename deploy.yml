@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: Ensure Apache is installed
-      apt:
+      yum:
         name: apache2
         state: present
  
