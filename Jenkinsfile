@@ -8,6 +8,7 @@ pipeline {
             steps {
                 sh 'whoami'
                 sh 'echo $PATH'
+                sh 'npm install'
             }
         }
         stage('Test') {
