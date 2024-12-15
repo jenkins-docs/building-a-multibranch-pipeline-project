@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'whoami'
-                sh 'export PATH=$PATH:/home/jenkins/.nvm/versions/node/v20.18.1/bin/ && npm install'
+                sh 'echo $PATH'
             }
         }
         stage('Test') {
