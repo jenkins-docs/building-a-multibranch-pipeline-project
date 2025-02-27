@@ -1,18 +1,31 @@
+
 pipeline {
     agent any
-    environment {
-        CI = 'true'
-    }
-    stages {
+
+     stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from the repository
+                checkout scm
+            }
+        }
+
         stage('Build') {
             steps {
-                sh 'npm install'
+                script {
+                    // Build the application
+                    sh 'make build'  // Modify this according to your build process
+                }
             }
         }
-        stage('Test') {
+
+        stage('Unit Test') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                script {
+                    // Run unit tests
+                    sh 'make test'  // Modify this according to your test process
+                }
             }
         }
-    }
+     }
 }
