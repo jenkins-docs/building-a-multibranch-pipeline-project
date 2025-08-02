@@ -13,6 +13,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'npm install'
+                echo 'fixing permission issue'
+                sh 'chmod +x node_modules/.bin/react-scripts'
             }
         }
         stage('Test') {
