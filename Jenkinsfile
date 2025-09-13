@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Hello world! This is vishnu' "Tesing with the webhook triggers My self vishnuvardhan"
+                echo 'Hello world! This is vishnu vardhan how are you' 
             }
         }
     }
