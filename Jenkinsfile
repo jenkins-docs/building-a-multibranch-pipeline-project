@@ -1,17 +1,36 @@
 pipeline {
-    agent any
-    environment {
-        CI = 'true'
+    agent {
+        kubernetes {
+            yaml """
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: node
+    image: node:18
+    command:
+    - cat
+    tty: true
+"""
+        }
     }
+
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                container('node') {
+                    sh 'npm --version'
+                    sh 'node --version'
+                    sh 'npm install'
+                }
             }
         }
+
         stage('Test') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                container('node') {
+                    sh './jenkins/scripts/test.sh'
+                }
             }
         }
     }
