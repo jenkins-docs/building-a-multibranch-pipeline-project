@@ -1,0 +1,24 @@
+name: Actions Lesson 1
+
+on:
+  push:
+
+jobs:
+  explore-actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show trigger information
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch/ref: ${{ github.ref }}"
+
+      - name: Show runner information
+        run: |
+          echo "Runner OS: ${{ runner.os }}"
+          echo "Current directory:"
+          pwd
+
+      - name: Say hello
+        run: echo "Hello from GitHub Actions!"
