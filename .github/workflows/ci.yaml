@@ -20,5 +20,13 @@ jobs:
           echo "Current directory:"
           pwd
 
+      - name: Look at runner workspace before checkout
+        run: |
+          echo "Current directory:"
+          pwd
+          echo
+          echo "Directory contents:"
+          ls -la
+
       - name: Say hello
         run: echo "Hello from GitHub Actions!"
