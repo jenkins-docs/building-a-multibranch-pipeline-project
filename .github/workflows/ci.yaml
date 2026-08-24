@@ -28,5 +28,16 @@ jobs:
           echo "Directory contents:"
           ls -la
 
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Look at runner workspace after checkout
+        run: |
+          echo "Current directory:"
+          pwd
+          echo
+          echo "Directory contents:"
+          ls -la
+
       - name: Say hello
         run: echo "Hello from GitHub Actions!"
