@@ -39,5 +39,18 @@ jobs:
           echo "Directory contents:"
           ls -la
 
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      - name: Show Node environment
+        run: |
+          echo "Node:"
+          node --version
+          echo
+          echo "npm:"
+          npm --version
+
       - name: Say hello
         run: echo "Hello from GitHub Actions!"
