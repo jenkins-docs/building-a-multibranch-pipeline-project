@@ -1,56 +1,29 @@
-name: Actions Lesson 1
+name: CI
 
 on:
   push:
 
 jobs:
-  explore-actions:
+  build-and-test:
     runs-on: ubuntu-latest
 
+    env:
+      CI: true
+
     steps:
-      - name: Show trigger information
-        run: |
-          echo "Event: ${{ github.event_name }}"
-          echo "Repository: ${{ github.repository }}"
-          echo "Branch/ref: ${{ github.ref }}"
-
-      - name: Show runner information
-        run: |
-          echo "Runner OS: ${{ runner.os }}"
-          echo "Current directory:"
-          pwd
-
-      - name: Look at runner workspace before checkout
-        run: |
-          echo "Current directory:"
-          pwd
-          echo
-          echo "Directory contents:"
-          ls -la
-
       - name: Check out repository
         uses: actions/checkout@v6
-
-      - name: Look at runner workspace after checkout
-        run: |
-          echo "Current directory:"
-          pwd
-          echo
-          echo "Directory contents:"
-          ls -la
 
       - name: Set up Node
         uses: actions/setup-node@v7
         with:
           node-version: "24"
 
-      - name: Show Node environment
-        run: |
-          echo "Node:"
-          node --version
-          echo
-          echo "npm:"
-          npm --version
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Say hello
-        run: echo "Hello from GitHub Actions!"
+      - name: Run tests
+        run: npm test
+
+      - name: Build application
+        run: npm run build
