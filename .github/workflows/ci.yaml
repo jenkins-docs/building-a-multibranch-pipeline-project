@@ -7,32 +7,7 @@ env:
   CI: true
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v6
-
-      - name: Set up Node
-        uses: actions/setup-node@v7
-        with:
-          node-version: "24"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Show prepared workspace
-        run: |
-          echo "Prepare job runner: ${{ runner.name }}"
-          echo "Workspace:"
-          pwd
-          echo
-          echo "Files:"
-          ls -la
-
   test:
-    needs: prepare
     runs-on: ubuntu-latest
 
     steps:
@@ -69,7 +44,43 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - name: Show build output
+      - name: Calculate build fingerprint
         run: |
-          echo "Build output:"
+          echo "SHA-256 of build/index.html:"
+          sha256sum build/index.html
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: react-build
+          path: build/
+
+  verify-artifact:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Inspect empty workspace
+        run: |
+          echo "Runner: ${{ runner.name }}"
+          echo "Workspace before artifact download:"
+          ls -la
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: react-build
+          path: build
+
+      - name: Inspect downloaded artifact
+        run: |
+          echo "Downloaded build:"
           ls -la build
+          echo
+          echo "Static files:"
+          ls -la build/static
+
+      - name: Calculate downloaded fingerprint
+        run: |
+          echo "SHA-256 of downloaded build/index.html:"
+          sha256sum build/index.html
