@@ -3,12 +3,12 @@ name: CI
 on:
   push:
 
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+env:
+  CI: true
 
-    env:
-      CI: true
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
@@ -22,8 +22,28 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Show prepared workspace
+        run: |
+          echo "Prepare job runner: ${{ runner.name }}"
+          echo "Workspace:"
+          pwd
+          echo
+          echo "Files:"
+          ls -la
+
+  test:
+    needs: prepare
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Inspect test workspace
+        run: |
+          echo "Test job runner: ${{ runner.name }}"
+          echo "Workspace:"
+          pwd
+          echo
+          echo "Files:"
+          ls -la
+
       - name: Run tests
         run: npm test
-
-      - name: Build application
-        run: npm run build
