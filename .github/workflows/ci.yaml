@@ -114,7 +114,7 @@ jobs:
     needs: build
     if: github.ref_name == 'production'
     runs-on: ubuntu-latest
-    environment: development
+    environment: production
 
     steps:
       - name: Download build artifact
