@@ -2,6 +2,10 @@ name: CI
 
 on:
   push:
+    branches:
+      - master
+      - development
+      - production
 
 env:
   CI: true
@@ -84,3 +88,43 @@ jobs:
         run: |
           echo "SHA-256 of downloaded build/index.html:"
           sha256sum build/index.html
+
+  deliver-development:
+    needs: build
+    if: github.ref_name == 'development'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: react-build
+          path: build
+
+      - name: Deliver to development
+        run: |
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Simulating delivery to DEVELOPMENT"
+          echo
+          echo "Artifact contents:"
+          ls -la build
+
+  deploy-production:
+    needs: build
+    if: github.ref_name == 'production'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: react-build
+          path: build
+
+      - name: Deploy to production
+        run: |
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Simulating deployment to PRODUCTION"
+          echo
+          echo "Artifact contents:"
+          ls -la build
