@@ -93,6 +93,7 @@ jobs:
     needs: build
     if: github.ref_name == 'development'
     runs-on: ubuntu-latest
+    environment: development
 
     steps:
       - name: Download build artifact
@@ -113,6 +114,7 @@ jobs:
     needs: build
     if: github.ref_name == 'production'
     runs-on: ubuntu-latest
+    environment: development
 
     steps:
       - name: Download build artifact
