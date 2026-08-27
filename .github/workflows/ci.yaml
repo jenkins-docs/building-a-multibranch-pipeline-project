@@ -7,6 +7,10 @@ on:
       - development
       - production
 
+  pull_request:
+    branches:
+      - master
+
 env:
   CI: true
 
@@ -17,6 +21,14 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
+
+      - name: Show GitHub event context
+        run: |
+          echo "Event:    ${{ github.event_name }}"
+          echo "ref:      ${{ github.ref }}"
+          echo "ref_name: ${{ github.ref_name }}"
+          echo "head_ref: ${{ github.head_ref }}"
+          echo "base_ref: ${{ github.base_ref }}"
 
       - name: Set up Node
         uses: actions/setup-node@v7
